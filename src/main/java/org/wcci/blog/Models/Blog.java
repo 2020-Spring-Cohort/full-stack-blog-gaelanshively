@@ -61,7 +61,7 @@ public class Blog {
 
         Blog blog = (Blog) o;
 
-        if (getId() != null ? !getId().equals(blog.getId() : blog.getId() != null) return false;
+        if (getId() != null ? !getId().equals(blog.getId()) : blog.getId() != null) return false;
         if (getBlogText() != null ? !getBlogText().equals(blog.getBlogText()) : blog.getBlogText() != null) return false;
         if (getBlogAuthor() != null ? !getBlogAuthor().equals(blog.getBlogAuthor()) : blog.getBlogAuthor() != null) return false;
         if (getCategory() != null ? !getCategory().equals(blog.getCategory()) : blog.getCategory() != null) return false;
