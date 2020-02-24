@@ -38,7 +38,7 @@ public class SpringWebApplicationTest {
     }
 
     @Test
-    public void eachCateogoryEndPointShouldReturnOk() throws Exception {
+    public void eachCategoryEndPointShouldReturnOk() throws Exception {
         Category testCategory = new Category("Another Test");
         when(categoryStorage.findCategoryByName("Another Test")).thenReturn(testCategory);
         mockMvc.perform(get("/categories/Another Test"))
