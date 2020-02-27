@@ -33,14 +33,14 @@ public class HttpRequestTest {
     @Test
     public void categoriesEndPointIsOk(){
         ResponseEntity<String> response = testRestTemplate.getForEntity(
-                "http://localhost:" + port + "/categories", String.class);
+                "http://localhost:" + port + "/categories/", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
     public void individualEndPointsReturnOk(){
         ResponseEntity<String> response = testRestTemplate.getForEntity(
-                "http://localhost:" + port + "/categories" + testCategory.getCategoryName(), String.class);
+                "http://localhost:" + port + "/categories/" + testCategory.getCategoryName(), String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }

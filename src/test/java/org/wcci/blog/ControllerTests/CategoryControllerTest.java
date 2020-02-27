@@ -48,7 +48,7 @@ public class CategoryControllerTest {
     @Test
     public void shouldReturnChosenCategoryWhenChosenCategoryIsCalled(){
         String viewName = underTest.displayChosenCategory("Test Posts", mockModel);
-        assertThat(viewName).isEqualTo("ChosenCategory");
+        assertThat(viewName).isEqualTo("category-view");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class CategoryControllerTest {
 
         mockMvc.perform(get("/categories/Test Posts"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("ChosenCategory"))
+                .andExpect(view().name("category-view"))
                 .andExpect(model().attributeExists("category"))
                 .andExpect(model().attribute("category", testCategory));
     }

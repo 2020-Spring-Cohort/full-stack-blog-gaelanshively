@@ -25,7 +25,7 @@ public class CategoryController {
         Category chosenCategory = categoryStorage.findCategoryByName(categoryName);
         model.addAttribute("category", chosenCategory);
 
-        return "ChosenCategory";
+        return "category-view";
     }
 
     @PostMapping("/add-category")

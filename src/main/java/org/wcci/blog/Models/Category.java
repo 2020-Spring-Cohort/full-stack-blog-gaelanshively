@@ -33,16 +33,17 @@ public class Category {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return Objects.equals(categoryName, category.categoryName);
+        return Objects.equals(id, category.id) &&
+                Objects.equals(categoryName, category.categoryName);
     }
 
     @Override
-    public int hashCode(){
-        return Objects.hash(categoryName);
+    public int hashCode() {
+        return Objects.hash(id, categoryName);
     }
 
     public Collection<Blog> getBlogs(){

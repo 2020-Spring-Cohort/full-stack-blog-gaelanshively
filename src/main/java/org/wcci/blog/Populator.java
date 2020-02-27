@@ -40,6 +40,7 @@ public class Populator implements CommandLineRunner {
         Blog booksBlog = new Blog("Still the best", "Roger Zelazny has been dead for 25 years, but it's still tough to find an author as enjoyable.  Lord of Light and Donnerjack remain among the best science fiction ever written.",
                 "CorwinOfAmber", books);
         blogStorage.store(booksBlog);
+        System.out.println("Populator is running");
     }
 
 }

@@ -44,7 +44,7 @@ public class WebLayerTest {
         when(mockCategoryStorage.findCategoryByName("Testcat")).thenReturn(testCategory);
         mockMvc.perform(get("/categories/Testcat"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("category"))
+                .andExpect(view().name("category-view"))
                 .andExpect(model().attributeExists("category"));
     }
 }

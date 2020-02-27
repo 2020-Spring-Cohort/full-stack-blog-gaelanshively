@@ -47,6 +47,6 @@ public class BlogControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("blog-view"))
                 .andExpect(model().attributeExists("blog"))
-                .andExpect(model().attribute("blog", testBlog));
+                .andExpect(model().attribute("blogs", testBlog));
     }
 }
