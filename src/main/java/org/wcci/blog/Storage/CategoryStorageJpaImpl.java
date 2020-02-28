@@ -8,7 +8,7 @@ import java.util.Collection;
 
 @Service
 public class CategoryStorageJpaImpl implements CategoryStorage{
-    private final CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     public CategoryStorageJpaImpl(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;

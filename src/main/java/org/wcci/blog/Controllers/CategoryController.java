@@ -26,8 +26,7 @@ public class CategoryController {
     @GetMapping("/categories/{categoryName}")
     public String displayChosenCategory(@PathVariable String categoryName, Model model){
         Category chosenCategory = categoryStorage.findCategoryByName(categoryName);
-        model.addAttribute("category", chosenCategory);
-
+        model.addAttribute("categories", chosenCategory);
         return "category-view";
     }
 

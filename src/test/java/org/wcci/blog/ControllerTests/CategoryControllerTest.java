@@ -45,7 +45,7 @@ public class CategoryControllerTest {
         underTest.displayChosenCategory("Test Posts", mockModel);
 
         verify(categoryStorage).findCategoryByName("Test Posts");
-        verify(mockModel).addAttribute("category", testCategory);
+        verify(mockModel).addAttribute("categories", testCategory);
     }
 
     @Test
@@ -62,8 +62,8 @@ public class CategoryControllerTest {
         mockMvc.perform(get("/categories/Test Posts"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("category-view"))
-                .andExpect(model().attributeExists("category"))
-                .andExpect(model().attribute("category", testCategory));
+                .andExpect(model().attributeExists("categories"))
+                .andExpect(model().attribute("categories", testCategory));
     }
 
     @Test
