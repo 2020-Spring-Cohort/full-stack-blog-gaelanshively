@@ -7,6 +7,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 import org.wcci.blog.Controllers.CategoryController;
 import org.wcci.blog.Models.Category;
+import org.wcci.blog.Storage.BlogStorage;
 import org.wcci.blog.Storage.CategoryStorage;
 
 import java.util.Collections;
@@ -23,25 +24,27 @@ public class CategoryControllerTest {
 
     private MockMvc mockMvc;
     private CategoryController underTest;
-    private CategoryStorage mockStorage;
+    private CategoryStorage categoryStorage;
+    private BlogStorage blogStorage;
     private Model mockModel;
 
     @BeforeEach
     public void setUp(){
         mockModel = mock(Model.class);
-        mockStorage = mock(CategoryStorage.class);
-        underTest = new CategoryController(mockStorage);
+        categoryStorage = mock(CategoryStorage.class);
+        blogStorage = mock(BlogStorage.class);
+        underTest = new CategoryController(categoryStorage, blogStorage);
         mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
     }
 
     @Test
     public void shouldReturnViewWithOneCategory(){
         Category testCategory = new Category("Test");
-        when(mockStorage.findCategoryByName("Test Posts")).thenReturn(testCategory);
+        when(categoryStorage.findCategoryByName("Test Posts")).thenReturn(testCategory);
 
         underTest.displayChosenCategory("Test Posts", mockModel);
 
-        verify(mockStorage).findCategoryByName("Test Posts");
+        verify(categoryStorage).findCategoryByName("Test Posts");
         verify(mockModel).addAttribute("category", testCategory);
     }
 
@@ -54,7 +57,7 @@ public class CategoryControllerTest {
     @Test
     public void shouldGoToIndividualEndPoint() throws Exception{
         Category testCategory = new Category("Test Category");
-        when(mockStorage.findCategoryByName("Test Posts")).thenReturn(testCategory);
+        when(categoryStorage.findCategoryByName("Test Posts")).thenReturn(testCategory);
 
         mockMvc.perform(get("/categories/Test Posts"))
                 .andExpect(status().isOk())
@@ -68,7 +71,7 @@ public class CategoryControllerTest {
         Category testCategory = new Category("Pet Stores");
 
         List<Category> categoryCollection = Collections.singletonList(testCategory);
-        when(mockStorage.findAllCategories()).thenReturn(categoryCollection);
+        when(categoryStorage.findAllCategories()).thenReturn(categoryCollection);
         mockMvc.perform(get("/categories"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -86,7 +89,7 @@ public class CategoryControllerTest {
     @Test
     public void addCategoryShouldStoreTheCategory(){
         underTest.addCategory("Porkins");
-        verify(mockStorage).store(new Category("Porkins"));
+        verify(categoryStorage).store(new Category("Porkins"));
     }
 
     @Test
@@ -95,6 +98,6 @@ public class CategoryControllerTest {
                             .param("categoryName", "CatIsPurring"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
-        verify(mockStorage).store(new Category("CatIsPurring"));
+        verify(categoryStorage).store(new Category("CatIsPurring"));
     }
 }

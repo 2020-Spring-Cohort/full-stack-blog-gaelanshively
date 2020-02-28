@@ -4,14 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.wcci.blog.Models.Category;
+import org.wcci.blog.Storage.BlogStorage;
 import org.wcci.blog.Storage.CategoryStorage;
 
 @Controller
 public class CategoryController {
-    private final CategoryStorage categoryStorage;
+    private CategoryStorage categoryStorage;
+    private BlogStorage blogStorage;
 
-    public CategoryController(CategoryStorage categoryStorage){
+    public CategoryController(CategoryStorage categoryStorage, BlogStorage blogStorage){
         this.categoryStorage = categoryStorage;
+        this.blogStorage = blogStorage;
     }
 
     @RequestMapping("/categories")
