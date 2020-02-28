@@ -14,13 +14,13 @@
     <section class="banner">
         <section class="title">
             <h1>Blog World</h1>
-            <h3 th:text="${categories.categoryName}"></h3>
+            <h3 th:text="${category.categoryName}"></h3>
         </section>
     </section>
     <section class="content">
         <ul class="link_list">
-            <li class="link_list__links" th:each="blog:${categories.getBlogs()}">
-                <a class="single_link" th:href="@{'/blog/'+${blog.id}}" th:text="${blog.blogTitle}"></a>
+            <li class="link_list__links" th:each="blog:${category.getBlogs()}">
+                <a class="single_link" th:href="@{'/blog/'+${blog.getId()}}" th:text="${blog.getBlogTitle()}"></a>
             </li>
         </ul>
     </section>

@@ -19,8 +19,8 @@
     </section>
     <section class="content">
         <ul class="link_list">
-            <li class="link_list__links" th:each="categories:${categories}">
-                <a class="single_link" th:href="@{'categories/'+ ${categories.categoryName}}" th:text="${categories.categoryName}"></a>
+            <li class="link_list__links" th:each="categories:${category}">
+                <a class="single_link" th:href="@{'/category/'+ ${categories.categoryName}}" th:text="${categories.categoryName}"></a>
             </li>
         </ul>
     </section>

@@ -15,7 +15,7 @@ public class BlogController {
         this.blogStorage = blogStorage;
     }
 
-    @RequestMapping("/blogs/{id}")
+    @RequestMapping("/blog/{id}")
     public String displayBlog(@PathVariable Long id, Model model){
         Blog retrievedBlog = blogStorage.findBlogById(id);
         model.addAttribute("blog", retrievedBlog);

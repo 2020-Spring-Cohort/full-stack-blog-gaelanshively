@@ -14,6 +14,11 @@ public class Category {
     @GeneratedValue
     private Long id;
     private String categoryName;
+
+    public Collection<Blog> getBlogs(){
+        return blogs;
+    }
+
     @OneToMany(mappedBy = "category")
     private Collection<Blog> blogs;
 
@@ -44,10 +49,6 @@ public class Category {
     @Override
     public int hashCode() {
         return Objects.hash(id, categoryName);
-    }
-
-    public Collection<Blog> getBlogs(){
-        return blogs;
     }
 
     @Override
