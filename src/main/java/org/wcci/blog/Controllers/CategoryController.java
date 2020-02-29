@@ -33,6 +33,6 @@ public class CategoryController {
     @PostMapping("/add-category")
     public String addCategory(@RequestParam String categoryName){
         categoryStorage.store(new Category(categoryName));
-        return "redirect:ListOfCategories";
+        return "redirect:/categories";
     }
 }

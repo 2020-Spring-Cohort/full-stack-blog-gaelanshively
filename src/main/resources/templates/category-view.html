@@ -24,6 +24,15 @@
             </li>
         </ul>
     </section>
+    <section class="footer">
+        <form action="/add-blog" method="POST">
+            <input name="categoryName" th:value="${categoryName}" type="hidden">
+            <input name="blogAuthor" type="text">
+            <input name="blogTitle" type="text">
+            <input name="blogText" type="text">
+            <button type="Submit">Submit new Blog Post</button>
+        </form>
+    </section>
 </div>
 </body>
 

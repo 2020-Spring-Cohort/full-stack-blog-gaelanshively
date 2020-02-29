@@ -38,7 +38,7 @@ public class BlogController {
     public String addBlog(@RequestParam String blogTitle, @RequestParam String blogText, @RequestParam String blogAuthor, @RequestParam String categoryName){
         Category blogCategory = categoryStorage.findCategoryByName(categoryName);
         blogStorage.store(new Blog(blogTitle, blogText, blogAuthor, blogCategory));
-        return "redirect:categories";
+        return "redirect:categories/" + categoryName;
     }
 
     @PostMapping("/blog/{id}/add-tag")

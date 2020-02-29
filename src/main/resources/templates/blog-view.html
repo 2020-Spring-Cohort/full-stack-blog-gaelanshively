@@ -21,6 +21,15 @@
         <p class="blog_title" th:text="${blog.blogTitle}"></p>
         <p th:text="'By '+${blog.blogAuthor}"></p>
         <p th:text="${blog.blogText}"></p>
+        <ul>
+            <li th:each="tag:${blog.tags}" th:text="${tag.name}"></li>
+        </ul>
+    </section>
+    <section class="footer">
+        <form th:action="'/blog/'+${blog.id}+'/add-tag'" method="post">
+            <input type="text" name="name" required />
+            <button type="submit">Add Tag</button>
+        </form>
     </section>
 </div>
 </body>
