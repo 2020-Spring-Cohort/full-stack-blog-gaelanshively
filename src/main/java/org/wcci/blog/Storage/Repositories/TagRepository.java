@@ -1,4 +1,4 @@
-package org.wcci.blog.Storage;
+package org.wcci.blog.Storage.Repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.wcci.blog.Models.Tag;

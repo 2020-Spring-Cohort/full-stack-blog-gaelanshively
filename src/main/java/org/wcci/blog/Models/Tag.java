@@ -14,7 +14,7 @@ public class Tag {
     @GeneratedValue
     private Long id;
     private String name;
-    @ManyToMany(mappedBy = "hashtags")
+    @ManyToMany(mappedBy = "tags")
     private Collection<Blog> blogs;
 
     public Collection<Blog> getBlogs(){

@@ -2,6 +2,7 @@ package org.wcci.blog.Storage;
 
 import org.springframework.stereotype.Service;
 import org.wcci.blog.Models.Tag;
+import org.wcci.blog.Storage.Repositories.TagRepository;
 
 import java.util.Collection;
 
