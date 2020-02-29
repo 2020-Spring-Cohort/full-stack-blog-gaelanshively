@@ -1,6 +1,5 @@
 package org.wcci.blog.ControllerTests;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
@@ -11,6 +10,8 @@ import org.wcci.blog.Controllers.BlogController;
 import org.wcci.blog.Models.Blog;
 import org.wcci.blog.Models.Category;
 import org.wcci.blog.Storage.BlogStorage;
+import org.wcci.blog.Storage.CategoryStorage;
+import org.wcci.blog.Storage.Repositories.TagRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -21,17 +22,21 @@ public class BlogControllerTest {
 
     private BlogController underTest;
     private Model model;
-    private BlogStorage mockStorage;
+    private BlogStorage blogStorage;
+    private CategoryStorage categoryStorage;
+    private TagRepository tagRepository;
     private Blog testBlog;
 
     @BeforeEach
     void setUp(){
-        mockStorage = mock(BlogStorage.class);
-        underTest = new BlogController(mockStorage);
+        blogStorage = mock(BlogStorage.class);
+        categoryStorage = mock(CategoryStorage.class);
+        tagRepository = mock(TagRepository.class);
+        underTest = new BlogController(blogStorage, categoryStorage, tagRepository);
         model = mock(Model.class);
         Category testCategory = new Category("Music");
         Blog testBlog = new Blog("Test", "Simply the test", "Tester than all the rest", testCategory);
-        when(mockStorage.findBlogById(1L)).thenReturn(testBlog);
+        when(blogStorage.findBlogById(1L)).thenReturn(testBlog);
     }
 
     @Test
@@ -43,10 +48,10 @@ public class BlogControllerTest {
     @Test
     public void displayBlogMappingIsCorrect() throws Exception{
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
-        mockMvc.perform(MockMvcRequestBuilders.get("/blogs/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/blog/1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("blog-view"))
                 .andExpect(model().attributeExists("blog"))
-                .andExpect(model().attribute("blogs", testBlog));
+                .andExpect(model().attribute("blog", testBlog));
     }
 }

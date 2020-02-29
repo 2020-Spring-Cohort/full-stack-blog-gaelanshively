@@ -40,26 +40,26 @@ public class CategoryControllerTest {
     @Test
     public void shouldReturnViewWithOneCategory(){
         Category testCategory = new Category("Test");
-        when(categoryStorage.findCategoryByName("Test Posts")).thenReturn(testCategory);
+        when(categoryStorage.findCategoryByName("TestPosts")).thenReturn(testCategory);
 
-        underTest.displayChosenCategory("Test Posts", mockModel);
+        underTest.displayChosenCategory("TestPosts", mockModel);
 
-        verify(categoryStorage).findCategoryByName("Test Posts");
+        verify(categoryStorage).findCategoryByName("TestPosts");
         verify(mockModel).addAttribute("categories", testCategory);
     }
 
     @Test
     public void shouldReturnChosenCategoryWhenChosenCategoryIsCalled(){
-        String viewName = underTest.displayChosenCategory("Test Posts", mockModel);
+        String viewName = underTest.displayChosenCategory("TestPosts", mockModel);
         assertThat(viewName).isEqualTo("category-view");
     }
 
     @Test
     public void shouldGoToIndividualEndPoint() throws Exception{
-        Category testCategory = new Category("Test Category");
-        when(categoryStorage.findCategoryByName("Test Posts")).thenReturn(testCategory);
+        Category testCategory = new Category("TestCategory");
+        when(categoryStorage.findCategoryByName("TestPosts")).thenReturn(testCategory);
 
-        mockMvc.perform(get("/categories/Test Posts"))
+        mockMvc.perform(get("/categories/TestPosts"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("category-view"))
                 .andExpect(model().attributeExists("categories"))
@@ -68,7 +68,7 @@ public class CategoryControllerTest {
 
     @Test
     public void categoriesEndPointShowsAllCategories() throws Exception {
-        Category testCategory = new Category("Pet Stores");
+        Category testCategory = new Category("PetStores");
 
         List<Category> categoryCollection = Collections.singletonList(testCategory);
         when(categoryStorage.findAllCategories()).thenReturn(categoryCollection);
@@ -83,7 +83,7 @@ public class CategoryControllerTest {
     @Test
     public void addCategoryShouldRedirectToCategoryEndPoint(){
         String result = underTest.addCategory("Tests");
-        assertThat(result).isEqualTo("redirect:categories");
+        assertThat(result).isEqualTo("redirect:ListOfCategories");
     }
 
     @Test

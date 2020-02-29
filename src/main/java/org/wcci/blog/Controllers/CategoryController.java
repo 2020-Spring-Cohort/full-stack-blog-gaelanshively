@@ -19,14 +19,14 @@ public class CategoryController {
 
     @RequestMapping("/categories")
     public String displayCategories(Model model){
-        model.addAttribute("category", categoryStorage.findAllCategories());
+        model.addAttribute("categories", categoryStorage.findAllCategories());
         return "ListOfCategories";
     }
 
-    @GetMapping("/category/{categoryName}")
+    @GetMapping("/categories/{categoryName}")
     public String displayChosenCategory(@PathVariable String categoryName, Model model){
         Category chosenCategory = categoryStorage.findCategoryByName(categoryName);
-        model.addAttribute("category", chosenCategory);
+        model.addAttribute("categories", chosenCategory);
         return "category-view";
     }
 
