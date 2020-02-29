@@ -46,11 +46,10 @@ public class BlogControllerTest {
     }
 
 
-    //Test fails and I can't figure out why.
-    // says it expects null but it returns testBlog, but it shouldn't expect null
-    // testBlog is exactly what I want to see so I don't know how to fix this
     @Test
     public void displayBlogMappingIsCorrect() throws Exception{
+        Category testCategory = new Category("Music");
+        Blog testBlog = new Blog("Test", "Simply the test", "Tester than all the rest", testCategory);
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
         mockMvc.perform(MockMvcRequestBuilders.get("/blog/1"))
                 .andExpect(status().isOk())

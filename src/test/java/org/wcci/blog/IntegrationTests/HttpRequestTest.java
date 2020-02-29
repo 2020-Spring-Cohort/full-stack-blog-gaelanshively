@@ -24,11 +24,6 @@ public class HttpRequestTest {
     private CategoryStorage categoryStorage;
     private Category testCategory;
 
-    @BeforeEach
-    public void setUp(){
-        testCategory = new Category("Category");
-        categoryStorage.store(testCategory);
-    }
 
     @Test
     public void categoriesEndPointIsOk(){
@@ -37,11 +32,12 @@ public class HttpRequestTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
-    //test fails but if you type in the URL it works, so not sure why this fails.
     @Test
-    public void individualEndPointsReturnOk(){
+    public void individualEndPointsReturnOk() throws Exception {
+        testCategory = new Category("Test");
+        categoryStorage.store(testCategory);
         ResponseEntity<String> response = testRestTemplate.getForEntity(
-                "http://localhost:" + port + "/categories/" + testCategory.getCategoryName(), String.class);
+                "http://localhost:" + port + "/categories/Test", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }
