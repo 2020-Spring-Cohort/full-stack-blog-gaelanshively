@@ -1,10 +1,10 @@
 package org.wcci.blog.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Blog {
@@ -16,15 +16,26 @@ public class Blog {
     private Category category;
     private String blogTitle;
     private String blogAuthor;
+    @ManyToMany
+    private Set<Tag> tags;
 
     public Blog(String blogTitle, String blogText, String blogAuthor, Category category){
         this.blogTitle = blogTitle;
         this.blogText = blogText;
         this.blogAuthor = blogAuthor;
         this.category = category;
+        this.tags = new HashSet<>();
     }
 
     public Blog(){
+    }
+
+    public void addTag(Tag tagToAdd){
+        tags.add(tagToAdd);
+    }
+
+    public Collection<Tag> getTags(){
+        return tags;
     }
 
     public Long getId() {
@@ -69,6 +80,6 @@ public class Blog {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, blogText, category, blogTitle, blogAuthor);
+        return Objects.hash(id, blogText, category, blogTitle, blogAuthor, tags);
     }
 }

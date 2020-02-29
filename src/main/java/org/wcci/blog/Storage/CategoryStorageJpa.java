@@ -7,10 +7,10 @@ import org.wcci.blog.Storage.Repositories.CategoryRepository;
 import java.util.Collection;
 
 @Service
-public class CategoryStorageJpaImpl implements CategoryStorage{
+public class CategoryStorageJpa implements CategoryStorage{
     private CategoryRepository categoryRepository;
 
-    public CategoryStorageJpaImpl(CategoryRepository categoryRepository){
+    public CategoryStorageJpa(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
     }
 

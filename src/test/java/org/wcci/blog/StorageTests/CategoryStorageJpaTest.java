@@ -3,7 +3,7 @@ package org.wcci.blog.StorageTests;
 import org.junit.jupiter.api.Test;
 import org.wcci.blog.Models.Category;
 import org.wcci.blog.Storage.CategoryStorage;
-import org.wcci.blog.Storage.CategoryStorageJpaImpl;
+import org.wcci.blog.Storage.CategoryStorageJpa;
 import org.wcci.blog.Storage.Repositories.CategoryRepository;
 
 import java.util.Collections;
@@ -12,13 +12,13 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-public class CategoryStorageJpaImplTest {
+public class CategoryStorageJpaTest {
 
     @Test
     public void ShouldFindAllCategories(){
         CategoryRepository mockCategoryRepository = mock(CategoryRepository.class);
         Category testCategory = new Category("Testing My Patience");
-        CategoryStorage underTest = new CategoryStorageJpaImpl(mockCategoryRepository);
+        CategoryStorage underTest = new CategoryStorageJpa(mockCategoryRepository);
         when(mockCategoryRepository.findAll()).thenReturn(Collections.singletonList(testCategory));
         underTest.store(testCategory);
         verify(mockCategoryRepository).save(testCategory);
@@ -30,7 +30,7 @@ public class CategoryStorageJpaImplTest {
         CategoryRepository mockCategoryRepository = mock(CategoryRepository.class);
         Category testCategory1 = new Category("Test1");
         Category testCategory2 = new Category("Test2");
-        CategoryStorage underTest = new CategoryStorageJpaImpl(mockCategoryRepository);
+        CategoryStorage underTest = new CategoryStorageJpa(mockCategoryRepository);
         underTest.store(testCategory1);
         underTest.store(testCategory2);
         Optional<Category> testCategory1Optional = Optional.of(testCategory1);

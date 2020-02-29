@@ -5,10 +5,10 @@ import org.wcci.blog.Models.Blog;
 import org.wcci.blog.Storage.Repositories.BlogRepository;
 
 @Service
-public class BlogStorageJpaImpl implements BlogStorage{
+public class BlogStorageJpa implements BlogStorage{
     private final BlogRepository blogRepository;
 
-    public BlogStorageJpaImpl(BlogRepository blogRepository){
+    public BlogStorageJpa(BlogRepository blogRepository){
         this.blogRepository = blogRepository;
     }
 
