@@ -26,7 +26,7 @@ public class HttpRequestTest {
 
     @BeforeEach
     public void setUp(){
-        testCategory = new Category("Internet Test Category");
+        testCategory = new Category("Category");
         categoryStorage.store(testCategory);
     }
 
@@ -37,6 +37,7 @@ public class HttpRequestTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
+    //test fails but if you type in the URL it works, so not sure why this fails.
     @Test
     public void individualEndPointsReturnOk(){
         ResponseEntity<String> response = testRestTemplate.getForEntity(

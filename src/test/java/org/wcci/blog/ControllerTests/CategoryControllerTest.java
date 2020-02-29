@@ -83,7 +83,7 @@ public class CategoryControllerTest {
     @Test
     public void addCategoryShouldRedirectToCategoryEndPoint(){
         String result = underTest.addCategory("Tests");
-        assertThat(result).isEqualTo("redirect:ListOfCategories");
+        assertThat(result).isEqualTo("redirect:/categories");
     }
 
     @Test

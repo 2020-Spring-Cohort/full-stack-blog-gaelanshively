@@ -8,6 +8,12 @@
     background-color: cornflowerblue;
     color: aliceblue;
     font-family: sans-serif;
+    text-decoration: underline;
+}
+
+.banner a:visited{
+    color: aliceblue;
+    text-decoration: none;
 }
 
 h1{
@@ -15,6 +21,8 @@ h1{
     padding-top: 0rem;
     font-size: 3rem;
     font-family: sans-serif;
+    text-decoration: none;
+    color: aliceblue;
 }
 
 h3 {
@@ -30,6 +38,16 @@ h3 {
 
 .content{
     font-family: sans-serif;
+}
+
+.content a{
+    color: black;
+    text-decoration: none;
+}
+
+.content a:visited{
+    color: black;
+    text-decoration: none;
 }
 
 .index_links{

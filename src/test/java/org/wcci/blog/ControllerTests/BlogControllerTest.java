@@ -45,6 +45,10 @@ public class BlogControllerTest {
         assertThat(result).isEqualTo("blog-view");
     }
 
+
+    //Test fails and I can't figure out why.
+    // says it expects null but it returns testBlog, but it shouldn't expect null
+    // testBlog is exactly what I want to see so I don't know how to fix this
     @Test
     public void displayBlogMappingIsCorrect() throws Exception{
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();

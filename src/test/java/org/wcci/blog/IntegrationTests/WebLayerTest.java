@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.wcci.blog.Controllers.BlogController;
+import org.wcci.blog.Controllers.TagController;
 import org.wcci.blog.Models.Category;
 import org.wcci.blog.Storage.BlogStorage;
 import org.wcci.blog.Storage.CategoryStorage;
@@ -28,6 +30,12 @@ public class WebLayerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    BlogController mockBlogController;
+
+    @MockBean
+    TagController mockTagController;
 
     @Test
     public void categoriesShouldBeOkAndReturnListOfCategoriesWithModelAttribute() throws Exception {
